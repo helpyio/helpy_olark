@@ -9,7 +9,7 @@
   </div>
   <div class="col-md-6">
     <%= f.check_box 'webhook.olark_enabled', { checked: (AppSettings['webhook.olark_enabled'] == '1'),
-      label: t('enable_webhook_url', default: "Enable Incoming Webhooks"), label_class: 'full-width subitem',
+      label: t('enable_olark', default: "Enable Olark Integration"), label_class: 'full-width subitem',
       class: 'bs-toggle', data: { size: 'mini' } } %>
   </div>
 </div>

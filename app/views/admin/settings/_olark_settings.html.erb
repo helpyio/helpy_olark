@@ -1,0 +1,15 @@
+<div class="row integration-item">
+  <div class="col-md-6">
+    <span class="more-important">Olark Integration</span>
+    <p class="less-important">
+      Integrate with Olark for Support Chat.  Use this as your webhook URL:<br/>
+
+      <h4><%= "#{request.protocol}#{request.host_with_port}/webhook/olark/#{AppSettings["webhook.olark_key"]}/" %></h4>
+    </p>
+  </div>
+  <div class="col-md-6">
+    <%= f.check_box 'webhook.olark_enabled', { checked: (AppSettings['webhook.olark_enabled'] == '1'),
+      label: t('enable_webhook_url', default: "Enable Incoming Webhooks"), label_class: 'full-width subitem',
+      class: 'bs-toggle', data: { size: 'mini' } } %>
+  </div>
+</div>

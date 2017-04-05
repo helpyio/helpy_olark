@@ -10,7 +10,7 @@ user is not found, they will be created inside of Helpy.
 Add this to your Gemfile:
 
 ```
-gem 'helpy_olark', github: 'scott/helpy_olark', branch: 'master'
+gem 'helpy_olark', git: 'http://github.com/scott/helpy_olark', branch: 'master'
 ```
 
 and then run:

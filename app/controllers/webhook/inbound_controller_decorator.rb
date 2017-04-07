@@ -6,6 +6,7 @@ Webhook::InboundController.class_eval do
 
   # curl -X POST http://helpy.local:3000/webhook/olark/50be1e6071ee4e4727f5977689598ca0/ --data-urlencode 'data={"kind": "Conversation", "tags": ["olark", "customer"], "items": [{"body": "Hi there. Need any help?", "timestamp": "1307116657.1", "kind": "MessageToVisitor", "nickname": "John", "operatorId": "1234"}, {"body": "Yes, please help me with billing.", "timestamp": "1307116661.25", "kind": "MessageToOperator", "nickname": "Bob"}], "operators": {"1234": {"username": "jdoe", "emailAddress": "john@example.com", "kind": "Operator", "nickname": "John", "id": "1234"}}, "groups": [{"kind": "Group", "name": "My Sales Group", "id": "0123456789abcdef"}], "visitor": {"ip": "123.4.56.78", "city": "Palo Alto", "kind": "Visitor", "conversationBeginPage": "http://www.example.com/path", "countryCode": "US", "country": "United State", "region": "CA", "chat_feedback": {"overall_chat": 5, "responsiveness": 5, "friendliness": 5, "knowledge": 5, "comments": "Very helpful, thanks"}, "operatingSystem": "Windows", "emailAddress": "steve@example.com", "organization": "Widgets Inc.", "phoneNumber": "(555) 555-5555", "fullName": "Steve Smith", "customFields": {"favoriteColor": "blue", "myInternalCustomerId": "12341234"}, "id": "9QRF9YWM5XW3ZSU7P9CGWRU89944341", "browser": "Chrome 12.1"}, "id": "EV695BI2930A6XMO32886MPT899443414"}'
 
+
   # {
   #     "kind": "Conversation",
   #     "id": "EV695BI2930A6XMO32886MPT899443414",
@@ -102,7 +103,7 @@ Webhook::InboundController.class_eval do
   def assigned_agent_id_from_chat
     # because there can be multiple operators and only one assigned agent in
     # helpy, we'll take the first one we find
-    agent = User.find_by_email(@params['operators'].first[1]['emailAddress'])
+    agent = User.find_by_email(@params['operators'].first[1]['emailAddress']) if @params['operators'].present?
     if agent.nil?
       agent = User.find_by_name("System")
     end
